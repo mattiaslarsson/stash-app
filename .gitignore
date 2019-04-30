@@ -1,5 +1,9 @@
 *.iml
 .gradle
+.idea/
+gradlew
+gradlew.bat
+gradle/
 /local.properties
 /.idea/caches
 /.idea/libraries
