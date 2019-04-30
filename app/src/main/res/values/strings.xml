@@ -1,0 +1,5 @@
+<resources>
+  <string name="app_name">Stash</string>
+  <string name="base_url">http://192.168.1.102:8080</string>
+  <string name="title_activity_edit_box">EditBoxActivity</string>
+</resources>
