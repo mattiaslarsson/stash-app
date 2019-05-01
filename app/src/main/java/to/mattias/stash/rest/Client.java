@@ -8,6 +8,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import to.mattias.stash.model.Article;
 import to.mattias.stash.model.Box;
 import to.mattias.stash.model.StashItem;
 
@@ -38,5 +39,13 @@ public interface Client {
   @GET("/stash/description/{despcription}")
   @Headers("accept: application/json")
   Call<List<Box>> getBoxesByDescription(@Path("description") String description);
+
+  @GET("/article/{ean}")
+  @Headers("accept: application/json")
+  Call<Article> getArticleByEan(@Path("ean") String ean);
+
+  @POST("/article")
+  @Headers("content-type: application/json")
+  Call<Void> addArticle(@Body Article article);
 
 }

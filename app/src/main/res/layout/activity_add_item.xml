@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  tools:context=".AddItemActivity">
+
+
+  <EditText
+    android:id="@+id/ean"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginEnd="8dp"
+    android:ems="10"
+    android:hint="ean code"
+    android:textAlignment="center"
+    app:layout_constraintEnd_toStartOf="@+id/scanEanButton"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"/>
+
+  <Button
+    android:id="@+id/scanEanButton"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp"
+    android:text="Scan"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    />
+
+  <EditText
+    android:id="@+id/description"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp"
+    android:ems="10"
+    android:hint="description"
+    android:textAlignment="center"
+    app:layout_constraintEnd_toEndOf="@+id/ean"
+    app:layout_constraintStart_toStartOf="@+id/ean"
+    app:layout_constraintTop_toBottomOf="@+id/ean"/>
+
+  <EditText
+    android:id="@+id/expiryDate"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp"
+    android:ems="10"
+    android:inputType="date"
+    android:hint="expiry date"
+    android:textAlignment="center"
+    app:layout_constraintEnd_toEndOf="@+id/description"
+    app:layout_constraintStart_toStartOf="@+id/description"
+    app:layout_constraintTop_toBottomOf="@+id/description"/>
+
+  <android.support.design.widget.FloatingActionButton
+    android:id="@+id/addItemFab"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/fab_margin"
+    android:layout_marginBottom="8dp"
+    android:layout_marginEnd="8dp"
+    android:layout_gravity="bottom|end"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:srcCompat="@android:drawable/ic_dialog_email"/>
+</android.support.constraint.ConstraintLayout>

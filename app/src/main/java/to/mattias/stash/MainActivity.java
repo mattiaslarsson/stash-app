@@ -1,5 +1,7 @@
 package to.mattias.stash;
 
+import static to.mattias.stash.rest.RetroFitFactory.getRestClient;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -18,6 +20,8 @@ import to.mattias.stash.rest.Client;
 
 public class MainActivity extends AppCompatActivity {
 
+  private static final int EDIT_BOX_REQUEST = 1;
+
   private Client restClient;
   private Retrofit retrofit;
   private ListView boxesView;
@@ -29,11 +33,7 @@ public class MainActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
 
-    retrofit = new Retrofit.Builder().baseUrl(getString(R.string.base_url))
-        .addConverterFactory(GsonConverterFactory.create())
-        .build();
-
-    restClient = retrofit.create(Client.class);
+    restClient = getRestClient();
 
     boxesView = findViewById(R.id.boxList);
     getAllBoxesFromBackend();
@@ -42,9 +42,16 @@ public class MainActivity extends AppCompatActivity {
       Box box = boxes.get(position);
       Intent editBoxIntent = new Intent(this, EditBoxActivity.class);
       editBoxIntent.putExtra("box", box);
-      startActivity(editBoxIntent);
+      startActivityForResult(editBoxIntent, EDIT_BOX_REQUEST);
     });
 
+  }
+
+  @Override
+  protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    if (requestCode == EDIT_BOX_REQUEST && resultCode == RESULT_OK) {
+      getAllBoxesFromBackend();
+    }
   }
 
   private void getAllBoxesFromBackend() {
