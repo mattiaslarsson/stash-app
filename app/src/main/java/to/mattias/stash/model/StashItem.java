@@ -2,6 +2,7 @@ package to.mattias.stash.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 import com.google.gson.annotations.JsonAdapter;
 import java.util.Date;
 import lombok.Data;
@@ -46,4 +47,5 @@ public class StashItem implements Parcelable {
     dest.writeString(this.description);
     dest.writeSerializable(this.expiration);
   }
+
 }

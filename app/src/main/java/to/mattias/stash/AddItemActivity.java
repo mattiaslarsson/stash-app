@@ -4,7 +4,9 @@ import static java.util.Calendar.YEAR;
 import static to.mattias.stash.rest.RetroFitFactory.getRestClient;
 
 import android.app.DatePickerDialog;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -21,6 +23,7 @@ import to.mattias.stash.rest.Client;
 
 public class AddItemActivity extends AppCompatActivity {
 
+  private static final int SCAN_REQUEST_CODE = 1;
   private final Calendar calendar = Calendar.getInstance();
   private EditText ean;
   private EditText description;
@@ -62,7 +65,27 @@ public class AddItemActivity extends AppCompatActivity {
   }
 
   private void setScanListener() {
+    scanButton.setOnClickListener((view) -> {
+      try {
+        Intent scanIntent = new Intent("com.google.zxing.client.android.SCAN");
+        scanIntent.putExtra("SCAN_MODE", "PRODUCT_MODE");
 
+        startActivityForResult(scanIntent, SCAN_REQUEST_CODE);
+      } catch (ActivityNotFoundException e) {
+        Uri marketUri = Uri.parse("market://details?id=com.google.zxing.client.android");
+        Intent marketIntent = new Intent(Intent.ACTION_VIEW, marketUri);
+        startActivity(marketIntent);
+      }
+    });
+  }
+
+  @Override
+  protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    if (requestCode == SCAN_REQUEST_CODE && resultCode == RESULT_OK) {
+      String content = data.getStringExtra("SCAN_RESULT");
+      ean.setText(content);
+      getArticle();
+    }
   }
 
   private void setExpiryDateListener() {

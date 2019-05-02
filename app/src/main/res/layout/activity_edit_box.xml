@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
+<android.support.constraint.ConstraintLayout
   xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools"
@@ -7,17 +7,38 @@
   android:layout_height="match_parent"
   tools:context=".EditBoxActivity">
 
-  <ListView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/boxContentList"/>
-
-  <android.support.design.widget.FloatingActionButton
-    android:id="@+id/fab"
+  <Button
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/fab_margin"
-    android:layout_gravity="bottom|end"
-    app:srcCompat="@android:drawable/ic_dialog_email"/>
+    android:id="@+id/sortByDescriptionButton"
+    android:text="Sort By Desc"
+    />
 
-</android.support.design.widget.CoordinatorLayout>
+  <Button
+    app:layout_constraintLeft_toRightOf="@id/sortByDescriptionButton"
+    app:layout_constraintTop_toTopOf="parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/sortByExpirationButton"
+    android:text="Sort By Exp"
+    />
+
+  <Button
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintLeft_toRightOf="@id/sortByExpirationButton"
+    android:id="@+id/addItemButton"
+    android:text="Add Item"
+    />
+
+
+  <ListView
+    app:layout_constraintTop_toBottomOf="@id/sortByDescriptionButton"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/boxContentList"/>
+
+</android.support.constraint.ConstraintLayout>
