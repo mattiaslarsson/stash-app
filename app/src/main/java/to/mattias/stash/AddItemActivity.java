@@ -141,7 +141,6 @@ public class AddItemActivity extends AppCompatActivity {
         }
       }).start();
     }
-
   }
 
   private void addArticle(StashItem item) {

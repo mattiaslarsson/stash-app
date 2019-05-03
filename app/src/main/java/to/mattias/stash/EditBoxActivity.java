@@ -5,9 +5,7 @@ import static to.mattias.stash.rest.RetroFitFactory.getRestClient;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -15,9 +13,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 import retrofit2.Response;
 import to.mattias.stash.model.Box;
 import to.mattias.stash.model.DescriptionSorter;
@@ -27,13 +23,13 @@ import to.mattias.stash.rest.Client;
 
 public class EditBoxActivity extends AppCompatActivity {
 
+  private static final int ADD_ITEM_REQUEST = 1;
   private ListView boxContentList;
   private List<StashItem> items = new ArrayList<>();
   private List<String> itemsAsStrings = new ArrayList<>();
   private Button sortByDescription, sortByExpiration, addItemButton;
   private ArrayAdapter contentAdapter;
   private int boxNumber;
-  private static final int ADD_ITEM_REQUEST = 1;
   private Client restClient;
 
   @Override

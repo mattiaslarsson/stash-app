@@ -8,6 +8,7 @@
   tools:context=".EditBoxActivity">
 
   <Button
+    style="@style/Widget.AppCompat.Button.Colored"
     app:layout_constraintLeft_toLeftOf="parent"
     app:layout_constraintTop_toTopOf="parent"
     android:layout_width="wrap_content"
@@ -17,8 +18,11 @@
     />
 
   <Button
+    style="@style/Widget.AppCompat.Button.Colored"
+
     app:layout_constraintLeft_toRightOf="@id/sortByDescriptionButton"
     app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintRight_toLeftOf="@id/addItemButton"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:id="@+id/sortByExpirationButton"
@@ -26,10 +30,12 @@
     />
 
   <Button
+    style="@style/Widget.AppCompat.Button.Colored"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     app:layout_constraintTop_toTopOf="parent"
     app:layout_constraintLeft_toRightOf="@id/sortByExpirationButton"
+    app:layout_constraintRight_toRightOf="parent"
     android:id="@+id/addItemButton"
     android:text="Add Item"
     />
