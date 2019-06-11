@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "910743778062",
+    "firebase_url": "https://testproj-7a65f.firebaseio.com",
+    "project_id": "testproj-7a65f",
+    "storage_bucket": "testproj-7a65f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:910743778062:android:465621ea42885b01",
+        "android_client_info": {
+          "package_name": "to.mattias.stash"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "910743778062-gnjr4omcdjo0546tl3hhq5elj6h2vc3b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAg4gW5IGAqRnRVbkFaNpOhBQdk32sOgIw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "910743778062-gnjr4omcdjo0546tl3hhq5elj6h2vc3b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
