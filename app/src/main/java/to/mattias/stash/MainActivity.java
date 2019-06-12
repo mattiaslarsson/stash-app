@@ -59,6 +59,13 @@ public class MainActivity extends AppCompatActivity {
 
       String token = task.getResult().getToken();
       Log.d(TAG, "Token: " + token);
+      new Thread(() -> {
+        try {
+          restClient.setNotificationTarget(token).execute();
+        } catch (IOException e) {
+          e.printStackTrace();
+        }
+      }).start();
     });
   }
 

@@ -12,8 +12,8 @@ import android.util.Log;
 import android.widget.Toast;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
-import com.google.gson.Gson;
 import java.time.LocalDate;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -30,19 +30,12 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
   public void onMessageReceived(RemoteMessage message) {
     if (!message.getData().isEmpty()) {
       JSONObject data = new JSONObject(message.getData());
-        try {
-          int box = data.getInt("box");
-          String artikel = data.getString("artikel");
-          if (VERSION.SDK_INT >= VERSION_CODES.O) {
-            LocalDate date = LocalDate.parse(data.getString("date"));
-            Log.d(TAG, "date: " + date);
-            Log.d(TAG, "box: " + box);
-            Log.d(TAG, "artikel: " + artikel);
-            Log.d(TAG, "data: " + message.getData());
-          }
-        } catch (JSONException e) {
-          e.printStackTrace();
-        }
+      try {
+        JSONArray items = new JSONArray(data.getString("items"));
+        Log.d(TAG, "Expiring items: " + items.toString());
+      } catch (JSONException e) {
+        e.printStackTrace();
+      }
     }
     if (message.getNotification() != null) {
       Log.d(TAG, "notification: " + message.getNotification().getBody());

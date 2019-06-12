@@ -36,7 +36,7 @@ public interface Client {
   @Headers("accept: application/json")
   Call<List<Box>> getBoxesByEan(@Path("ean") String ean);
 
-  @GET("/stash/description/{despcription}")
+  @GET("/stash/description/{description}")
   @Headers("accept: application/json")
   Call<List<Box>> getBoxesByDescription(@Path("description") String description);
 
@@ -47,5 +47,8 @@ public interface Client {
   @POST("/article")
   @Headers("content-type: application/json")
   Call<Void> addArticle(@Body Article article);
+
+  @POST("/notificationtarget/{target}")
+  Call<Void> setNotificationTarget(@Path("target") String target);
 
 }
