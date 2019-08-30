@@ -8,13 +8,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import com.google.firebase.FirebaseApp;
 import com.google.firebase.iid.FirebaseInstanceId;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import retrofit2.Call;
-import retrofit2.Retrofit;
 import to.mattias.stash.model.Box;
 import to.mattias.stash.rest.Client;
 
@@ -24,7 +22,6 @@ public class MainActivity extends AppCompatActivity {
   private static final String TAG = MainActivity.class.getSimpleName();
 
   private Client restClient;
-  private Retrofit retrofit;
   private ListView boxesView;
   private List<Box> boxes = new ArrayList<>();
   private ArrayAdapter boxesAdapter;
@@ -34,7 +31,6 @@ public class MainActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
     initFirebase();
-
 
     restClient = getRestClient();
 

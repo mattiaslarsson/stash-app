@@ -20,7 +20,11 @@ public interface Client {
 
   @GET("/stash/{boxNumber}")
   @Headers("accept: application/json")
-  Call<List<StashItem>> getBox(@Path("boxNumber") int boxNumber);
+  Call<List<StashItem>> getItemsInBox(@Path("boxNumber") int boxNumber);
+
+  @GET("/stash/box/{boxNumber}")
+  @Headers("accept:application/json")
+  Call<Box> getBox(@Path("boxNumber") int boxNumber);
 
   @POST("/stash/{boxNumber}")
   @Headers("content-type: application/json")

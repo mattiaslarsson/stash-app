@@ -97,7 +97,7 @@ public class EditBoxActivity extends AppCompatActivity {
         try {
           Response response = restClient.addItemInBox(boxNumber, addedItem).execute();
           if (response.isSuccessful()) {
-            items = restClient.getBox(boxNumber).execute().body();
+            items = restClient.getItemsInBox(boxNumber).execute().body();
             itemsAsStrings.add(itemToString(addedItem));
             runOnUiThread(() -> contentAdapter.notifyDataSetChanged());
           }

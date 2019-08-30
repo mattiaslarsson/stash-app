@@ -1,5 +1,5 @@
 <resources>
   <string name="app_name">Stash</string>
-  <string name="base_url">http://83.252.13.220:8080</string>
+  <string name="base_url">https://stash-application.herokuapp.com</string>
   <string name="title_activity_edit_box">EditBoxActivity</string>
 </resources>
