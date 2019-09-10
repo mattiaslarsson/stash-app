@@ -11,9 +11,12 @@ import android.widget.ListView;
 import com.google.firebase.iid.FirebaseInstanceId;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import retrofit2.Call;
 import to.mattias.stash.model.Box;
+import to.mattias.stash.model.StashItem;
 import to.mattias.stash.rest.Client;
 
 public class MainActivity extends AppCompatActivity {
@@ -23,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
   private Client restClient;
   private ListView boxesView;
-  private List<Box> boxes = new ArrayList<>();
+  private Map<Integer, List<StashItem>> boxes = new HashMap();
   private ArrayAdapter boxesAdapter;
 
   @Override
@@ -38,7 +41,9 @@ public class MainActivity extends AppCompatActivity {
     getAllBoxesFromBackend();
 
     boxesView.setOnItemClickListener((parent, view, position, id) -> {
-      Box box = boxes.get(position);
+      int boxNumber = position + 1;
+      List<StashItem> items = boxes.get(boxNumber);
+      Box box = new Box(boxNumber, items);
       Intent editBoxIntent = new Intent(this, EditBoxActivity.class);
       editBoxIntent.putExtra("box", box);
       startActivityForResult(editBoxIntent, EDIT_BOX_REQUEST);
@@ -74,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
 
   private void getAllBoxesFromBackend() {
     new Thread(() -> {
-      Call<List<Box>> boxesCall = restClient.getBoxes();
+      Call<Map<Integer, List<StashItem>>> boxesCall = restClient.getBoxes();
       try {
         boxes = boxesCall.execute().body();
         boxesAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1,
@@ -86,12 +91,12 @@ public class MainActivity extends AppCompatActivity {
     }).start();
   }
 
-  private List<String> toStrings(List<Box> boxes) {
+  private List<String> toStrings(Map<Integer, List<StashItem>> boxes) {
     List<String> boxesAsStrings = new ArrayList<>();
-    boxes.stream().forEach(box -> {
+    boxes.entrySet().forEach(box -> {
       StringBuilder sb = new StringBuilder();
-      sb.append("Box #").append(Integer.toString(box.getBoxNumber()));
-      sb.append(" innehåller ").append(Integer.toString(box.getItems().size())).append(" artiklar");
+      sb.append("Box #").append(box.getKey());
+      sb.append(" innehåller ").append(box.getValue().size()).append(" artiklar");
       boxesAsStrings.add(sb.toString());
     });
 

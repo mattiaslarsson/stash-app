@@ -11,6 +11,11 @@ public class Box implements Parcelable {
   private int boxNumber;
   private List<StashItem> items;
 
+  public Box(int boxNumber, List<StashItem> items) {
+    this.boxNumber = boxNumber;
+    this.items = items;
+  }
+
   public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
     public Box createFromParcel(Parcel in) {
       return new Box(in);

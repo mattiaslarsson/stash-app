@@ -2,7 +2,6 @@ package to.mattias.stash.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.support.annotation.NonNull;
 import com.google.gson.annotations.JsonAdapter;
 import java.util.Date;
 import lombok.Data;
@@ -24,11 +23,10 @@ public class StashItem implements Parcelable {
   private String description;
   @JsonAdapter(DateAdapter.class)
   private Date expiration;
+  private int box;
 
   public StashItem() {
   }
-
-  ;
 
   public StashItem(Parcel in) {
     this.ean = in.readString();

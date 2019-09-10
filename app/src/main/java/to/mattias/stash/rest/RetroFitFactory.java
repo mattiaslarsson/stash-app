@@ -8,7 +8,7 @@ public class RetroFitFactory {
 
   static {
     retrofit = new Retrofit.Builder()
-        .baseUrl("https://stash-application.herokuapp.com")
+        .baseUrl("https://stash-application.herokuapp.com/")
         .addConverterFactory(GsonConverterFactory.create())
         .build();
   }

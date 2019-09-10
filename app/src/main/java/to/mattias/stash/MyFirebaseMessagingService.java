@@ -27,10 +27,12 @@ import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 import com.google.firebase.messaging.RemoteMessage.Notification;
 import java.io.IOException;
+import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import to.mattias.stash.model.Box;
+import to.mattias.stash.model.StashItem;
 import to.mattias.stash.rest.Client;
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
@@ -89,7 +91,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     notifyIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
     try {
-      Box box = restClient.getBox(boxNumber).execute().body();
+      List<StashItem> items = restClient.getBox(boxNumber).execute().body();
+      Box box = new Box(items.get(0).getBox(), items);
       notifyIntent.putExtra("box", box);
       PendingIntent notifyPendingIntent = PendingIntent.getActivity(this, 0, notifyIntent, 0);
 

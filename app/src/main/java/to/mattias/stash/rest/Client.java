@@ -1,6 +1,7 @@
 package to.mattias.stash.rest;
 
 import java.util.List;
+import java.util.Map;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
@@ -16,7 +17,7 @@ public interface Client {
 
   @GET("/stash")
   @Headers("accept: application/json")
-  Call<List<Box>> getBoxes();
+  Call<Map<Integer, List<StashItem>>> getBoxes();
 
   @GET("/stash/{boxNumber}")
   @Headers("accept: application/json")
@@ -24,7 +25,7 @@ public interface Client {
 
   @GET("/stash/box/{boxNumber}")
   @Headers("accept:application/json")
-  Call<Box> getBox(@Path("boxNumber") int boxNumber);
+  Call<List<StashItem>> getBox(@Path("boxNumber") int boxNumber);
 
   @POST("/stash/{boxNumber}")
   @Headers("content-type: application/json")
